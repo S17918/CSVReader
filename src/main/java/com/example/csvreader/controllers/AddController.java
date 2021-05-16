@@ -50,7 +50,7 @@ public class AddController {
                 List<User> skippedList = new ArrayList<>();
                 List<User> finalList = new ArrayList<>();
 
-                for (User user : userList) {
+                for(User user : userList) {
                     if(user.getFirstName().length() != 0 && user.getLastName().length() != 0 && user.getBirthDate().length() != 0){
                         user.setDate(parseDateToSQL(user.getBirthDate()));
                         if(user.getPhoneNumber().length() == 9) {
@@ -68,7 +68,7 @@ public class AddController {
                 }
 
                 int x = 0;
-                for(User user:userRepository.findAll()){
+                for(User ignored :userRepository.findAll()){
                     x++;
                 }
 
