@@ -1,0 +1,25 @@
+.container {
+    background-color: white;
+}
+
+.title{
+    font-size: 44px;
+    background-color: white;
+}
+
+.status{
+
+}
+
+.buttons{
+    text-align: center;
+}
+
+.input_form{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+    vertical-align: middle;
+}

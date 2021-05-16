@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{/css/csvreader.css}" rel="stylesheet" >
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet'>
     <meta charset="UTF-8">
     <title>CSV Reader</title>
 </head>
 <body>
-    <p>Hello World !</p>
+<div class="container">
+    <div class="title" style="font-family: 'Amaranth';">
+        <p><a class="text-decoration-none text-dark" th:href="@{/}">CSV Reader</a></p>
+    </div>
+    <div class="buttons">
+        <a class="text-decoration-none text-dark" th:href="@{/add}"><button type="submit" class="btn btn-light border">Add</button></a>
+        <a class="text-decoration-none text-dark" th:href="@{/users}"><button type="submit" class="btn btn-light border">Users</button></a>
+        <button type="submit" class="btn btn-light border">Search</button>
+        <button type="submit" class="btn btn-light border">API</button>
+    </div>
+</div>
+
 </body>
 </html>
