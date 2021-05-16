@@ -18,9 +18,7 @@ public class IndexController {
     }
 
     @RequestMapping(path = "/add")
-    public String add(Model model){
-        return "add";
-    }
+    public String add(Model model){ return "add"; }
 
     @RequestMapping(path = "/users")
     public String users(Model model){
