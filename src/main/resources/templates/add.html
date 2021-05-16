@@ -11,12 +11,20 @@
 <div class="title" style="font-family: 'Amaranth';">
     <p><a class="text-decoration-none text-dark" th:href="@{/}">CSV Reader</a></p>
 </div>
+<div class="buttons">
+    <a class="text-decoration-none text-dark" th:href="@{/users}"><button type="submit" class="btn btn-light border">Users</button></a>
+    <button type="submit" class="btn btn-light border">Search</button>
+    <button type="submit" class="btn btn-light border">API</button>
+</div>
 <div class="input_form pt-4">
     <form id="uploadForm" th:action="@{/upload}" method="POST" enctype="multipart/form-data">
         <label for="file">File</label>
         <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
         <p class="pt-4"><button type="submit" class="btn btn-light border">Upload</button></p>
     </form>
+</div>
+<div class="copyright py-4 text-center text-dark">
+    <div class="container"><small>Copyright © Piotr Wasilewski 2021</small></div>
 </div>
 </body>
 </html>

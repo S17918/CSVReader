@@ -29,13 +29,13 @@
             <strong>Error:</strong>
             <span th:text="${errorMessage}"></span>
         </div>
-        <div th:if="${!warningStatus}">
+        <div th:if="${warningStatus == false}">
             <div class="alert alert-success" role="alert" th:if="${status}">
                 <strong>Success:</strong>
                 <span th:text="${successMessage}"></span>
             </div>
         </div>
-        <div th:if="${warningStatus}">
+        <div th:if="${warningStatus == true}">
             <div class="alert alert-warning" role="alert" th:if="${status}">
                 <strong>Warning:</strong>
                 <span th:text="${warningMessage}"></span>
@@ -50,7 +50,7 @@
                 <th>Phone Number</th>
             </thead>
             <tbody>
-            <tr th:each="user, i : ${users}">
+            <tr th:each="user, i : ${finalUsers}">
                 <th scope="row" th:text="${i.index + 1}"></th>
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
@@ -61,6 +61,8 @@
         </table>
     </div>
 </div>
-
+<div class="copyright py-4 text-center text-dark">
+    <div class="container"><small>Copyright © Piotr Wasilewski 2021</small></div>
+</div>
 </body>
 </html>

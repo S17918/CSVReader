@@ -81,6 +81,7 @@ public class AddController {
                                     break;
                                 }else{
                                     finalList.add(user);
+                                    break;
                                 }
                             }
                         }else{
@@ -97,17 +98,19 @@ public class AddController {
                     userRepository.save(user);
                 }
 
-                if(!skippedList.isEmpty()){
-                    model.addAttribute("warningStatus", true);
-                    model.addAttribute("warningMessage", "Some users has been skipped! Perhaps first name, last name or birth day were null value or phone number already exists in database?");
-                }else{
+                if(skippedList.isEmpty()){
                     model.addAttribute("warningStatus", false);
+                    model.addAttribute("status", true);
                     model.addAttribute("successMessage", "All data has been uploaded");
+                }else{
+                    model.addAttribute("warningStatus", true);
+                    model.addAttribute("status", true);
+                    model.addAttribute("warningMessage", "Some users has been skipped! Perhaps first name, last name or birth day were null value or phone number already exists in database?");
+
                 }
 
-                model.addAttribute("users", finalList);
+                model.addAttribute("finalUsers", finalList);
                 model.addAttribute("skippedUsers", skippedList);
-                model.addAttribute("status", true);
                 model.addAttribute("successMessage", "All data has been uploaded");
             } catch (Exception e) {
                 e.printStackTrace();

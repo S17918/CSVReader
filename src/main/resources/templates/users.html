@@ -8,34 +8,38 @@
     <title>CSV Reader</title>
 </head>
 <body>
-<div class="title" style="font-family: 'Amaranth';">
-    <p><a class="text-decoration-none text-dark" th:href="@{/}">CSV Reader</a></p>
+<div class="container">
+    <div class="title" style="font-family: 'Amaranth';">
+        <p><a class="text-decoration-none text-dark" th:href="@{/}">CSV Reader</a></p>
+    </div>
+    <div class="buttons">
+        <a class="text-decoration-none text-dark" th:href="@{/add}"><button type="submit" class="btn btn-light border">Add</button></a>
+        <button type="submit" class="btn btn-light border">Search</button>
+        <button type="submit" class="btn btn-light border">API</button>
+    </div>
+    <div class="status">
+        <table class="table table-striped">
+            <thead>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Birth Date</th>
+            <th>Phone Number</th>
+            </thead>
+            <tbody>
+            <tr th:each="user, i : ${users}">
+                <th scope="row" th:text="${i.index + 1}"></th>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.date}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-<div class="buttons">
-    <a class="text-decoration-none text-dark" th:href="@{/add}"><button type="submit" class="btn btn-light border">Add</button></a>
-    <button type="submit" class="btn btn-light border">Search</button>
-    <button type="submit" class="btn btn-light border">API</button>
+<div class="copyright py-4 text-center text-dark">
+    <div class="container"><small>Copyright © Piotr Wasilewski 2021</small></div>
 </div>
-<div class="status">
-    <table class="table table-striped">
-        <thead>
-        <th>Number</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Birth Date</th>
-        <th>Phone Number</th>
-        </thead>
-        <tbody>
-        <tr th:each="user, i : ${users}">
-            <th scope="row" th:text="${i.index + 1}"></th>
-            <td th:text="${user.firstName}"></td>
-            <td th:text="${user.lastName}"></td>
-            <td th:text="${user.date}"></td>
-            <td th:text="${user.phoneNumber}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
 </body>
 </html>
