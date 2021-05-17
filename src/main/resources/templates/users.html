@@ -25,6 +25,7 @@
             <th>Surname</th>
             <th>Birth Date</th>
             <th>Phone Number</th>
+            <th>Action</th>
             </thead>
             <tbody>
             <tr th:each="user, i : ${users}">
@@ -33,6 +34,7 @@
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.date}"></td>
                 <td th:text="${user.phoneNumber}"></td>
+                <td><a class="text-decoration-none" href="#"><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></a></td>
             </tr>
             </tbody>
         </table>

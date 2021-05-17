@@ -50,7 +50,7 @@
                 <th>Phone Number</th>
             </thead>
             <tbody>
-            <tr th:each="user, i : ${finalUsers}">
+            <tr th:each="user, i : ${users}">
                 <th scope="row" th:text="${i.index + 1}"></th>
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>

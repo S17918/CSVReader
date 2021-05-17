@@ -50,7 +50,7 @@ public class AddController {
                 List<User> skippedList = new ArrayList<>();
                 List<User> finalList = new ArrayList<>();
 
-                for(User user : userList) {
+                for (User user : userList) {
                     if(user.getFirstName().length() != 0 && user.getLastName().length() != 0 && user.getBirthDate().length() != 0){
                         user.setDate(parseDateToSQL(user.getBirthDate()));
                         if(user.getPhoneNumber().length() == 9) {
@@ -68,24 +68,26 @@ public class AddController {
                 }
 
                 int x = 0;
-                for(User ignored :userRepository.findAll()){
+                for(User user:userRepository.findAll()){
                     x++;
                 }
 
                 if(!tempList.isEmpty()){
                     for(User user : tempList) {
-                        if(x != 0){
+                        System.out.println(x);
+                        if(x == 0){
+                            finalList.add(user);
+                        }else {
+                            boolean check = false;
                             for(User user2 : userRepository.findAll()){
                                 if(Objects.equals(user2.getPhoneNumber(), user.getPhoneNumber())){
+                                    check = true;
                                     skippedList.add(user);
-                                    break;
-                                }else{
-                                    finalList.add(user);
-                                    break;
                                 }
                             }
-                        }else{
-                            finalList.add(user);
+                            if(!check){
+                                finalList.add(user);
+                            }
                         }
                     }
                 }else {
@@ -98,19 +100,17 @@ public class AddController {
                     userRepository.save(user);
                 }
 
-                if(skippedList.isEmpty()){
-                    model.addAttribute("warningStatus", false);
-                    model.addAttribute("status", true);
-                    model.addAttribute("successMessage", "All data has been uploaded");
-                }else{
+                if(!skippedList.isEmpty()){
                     model.addAttribute("warningStatus", true);
-                    model.addAttribute("status", true);
                     model.addAttribute("warningMessage", "Some users has been skipped! Perhaps first name, last name or birth day were null value or phone number already exists in database?");
-
+                }else{
+                    model.addAttribute("warningStatus", false);
+                    model.addAttribute("successMessage", "All data has been uploaded");
                 }
 
-                model.addAttribute("finalUsers", finalList);
+                model.addAttribute("users", finalList);
                 model.addAttribute("skippedUsers", skippedList);
+                model.addAttribute("status", true);
                 model.addAttribute("successMessage", "All data has been uploaded");
             } catch (Exception e) {
                 e.printStackTrace();
