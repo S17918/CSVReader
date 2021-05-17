@@ -24,6 +24,7 @@ public class User {
     private Date date;
 
     @CsvBindByName(column = "phone_no")
+    //@Column(unique = true) (Apka pominie osobę jeżeli numer tel się powtarza)
     private String phoneNumber;
 
     public User(String firstName, String lastName, String birthDate, Date date, String phoneNumber) {
