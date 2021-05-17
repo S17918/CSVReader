@@ -14,8 +14,8 @@
     </div>
     <div class="buttons">
         <a class="text-decoration-none text-dark" th:href="@{/add}"><button type="submit" class="btn btn-light border">Add</button></a>
-        <button type="submit" class="btn btn-light border">Search</button>
-        <button type="submit" class="btn btn-light border">API</button>
+        <a class="text-decoration-none text-dark" th:href="@{/search}"><button type="submit" class="btn btn-light border">Search</button></a>
+        <a class="text-decoration-none text-dark" th:href="@{/api}" target="_blank"><button type="submit" class="btn btn-light border">API</button></a>
     </div>
     <div class="container">
         <h3 style="font-family: 'Amaranth';" th:text="'Users: ' + ${totalUsers}"/>
@@ -51,8 +51,8 @@
             <th>Action</th>
             </thead>
             <tbody>
-            <tr th:each="user, i : ${users}">
-                <th scope="row" th:text="${i.index + 1}"></th>
+            <tr th:each="user, i : ${userPage.content}">
+                <th scope="row" th:text="${i.index + 1 + (5 * userPage.pageable.getPageNumber())}"></th>
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.date}"></td>
@@ -61,6 +61,12 @@
             </tr>
             </tbody>
         </table>
+
+        <nav aria-label="...">
+            <ul th:if="${userPage.totalPages > 0}" class="pagination">
+                <li class="page-item" th:each="pageNumber : ${pageNumbers}" ><a class="page-link" th:href="@{/users(size=${userPage.size}, page=${pageNumber})}" th:text="${pageNumber}"/></li>
+            </ul>
+        </nav>
     </div>
 </div>
 <div class="copyright py-4 text-center text-dark">

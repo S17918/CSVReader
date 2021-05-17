@@ -12,19 +12,21 @@
     <p><a class="text-decoration-none text-dark" th:href="@{/}">CSV Reader</a></p>
 </div>
 <div class="buttons">
+    <a class="text-decoration-none text-dark" th:href="@{/add}"><button type="submit" class="btn btn-light border">Add</button></a>
     <a class="text-decoration-none text-dark" th:href="@{/users}"><button type="submit" class="btn btn-light border">Users</button></a>
-    <a class="text-decoration-none text-dark" th:href="@{/search}"><button type="submit" class="btn btn-light border">Search</button></a>
     <a class="text-decoration-none text-dark" th:href="@{/api}" target="_blank"><button type="submit" class="btn btn-light border">API</button></a>
 </div>
-<div class="input_form pt-4">
-    <form id="uploadForm" th:action="@{/upload}" method="POST" enctype="multipart/form-data">
-        <label for="file">File</label>
-        <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
-        <p class="pt-4"><button type="submit" class="btn btn-light border">Upload</button></p>
+<div class="container pt-4">
+    <form action="#" method="post" th:action="@{/search/success/{name}(name=${search.search})}" th:object="${search}">
+        <div class="row g-3 align-items-center justify-content-center">
+            <div class="col-auto">
+                <input type="text" name="name" th:value="*{search}" placeholder="Input last name"/>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-light border">Search</button>
+            </div>
+        </div>
     </form>
-</div>
-<div class="copyright py-4 text-center text-dark">
-    <div class="container"><small>Copyright © Piotr Wasilewski 2021</small></div>
 </div>
 </body>
 </html>

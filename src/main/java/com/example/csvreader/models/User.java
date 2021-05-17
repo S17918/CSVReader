@@ -11,13 +11,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @CsvBindByName(column = "first_name")
+    //Wykomentowanie required aby dane mogły się ładować bez wyrzucania błędu (Apka pominie linijkę jeżeli jest puste pole)
+    @CsvBindByName(column = "first_name"/*, required = true*/)
     private String firstName;
 
-    @CsvBindByName(column = "last_name")
+    @CsvBindByName(column = "last_name"/*, required = true*/)
     private String lastName;
 
-    @CsvBindByName(column = "birth_date")
+    @CsvBindByName(column = "birth_date"/*, required = true*/)
     private String birthDate;
 
     private Date date;

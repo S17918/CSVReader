@@ -14,8 +14,8 @@
     </div>
     <div class="buttons">
         <a class="text-decoration-none text-dark" th:href="@{/users}"><button type="submit" class="btn btn-light border">Users</button></a>
-        <button type="submit" class="btn btn-light border">Search</button>
-        <button type="submit" class="btn btn-light border">API</button>
+        <a class="text-decoration-none text-dark" th:href="@{/search}"><button type="submit" class="btn btn-light border">Search</button></a>
+        <a class="text-decoration-none text-dark" th:href="@{/api}" target="_blank"><button type="submit" class="btn btn-light border">API</button></a>
     </div>
     <div class="input_form pt-4">
         <form id="uploadForm" th:action="@{/upload}" method="POST" enctype="multipart/form-data">
@@ -41,24 +41,27 @@
                 <span th:text="${warningMessage}"></span>
             </div>
         </div>
-        <table class="table table-striped" th:if="${status}">
-            <thead>
+        <div class="container pt-4">
+            <h3 style="font-family: 'Amaranth';">Added users: </h3>
+            <table class="table table-striped" th:if="${status}">
+                <thead>
                 <th>Number</th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Birth Date</th>
                 <th>Phone Number</th>
-            </thead>
-            <tbody>
-            <tr th:each="user, i : ${users}">
-                <th scope="row" th:text="${i.index + 1}"></th>
-                <td th:text="${user.firstName}"></td>
-                <td th:text="${user.lastName}"></td>
-                <td th:text="${user.date}"></td>
-                <td th:text="${user.phoneNumber}"></td>
-            </tr>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <tr th:each="user, i : ${users}">
+                    <th scope="row" th:text="${i.index + 1}"></th>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.date}"></td>
+                    <td th:text="${user.phoneNumber}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <div class="copyright py-4 text-center text-dark">
