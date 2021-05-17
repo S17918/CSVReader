@@ -17,6 +17,7 @@
         <a class="text-decoration-none text-dark" th:href="@{/users}"><button type="submit" class="btn btn-light border">Users</button></a>
         <a class="text-decoration-none text-dark" th:href="@{/search}"><button type="submit" class="btn btn-light border">Search</button></a>
         <a class="text-decoration-none text-dark" th:href="@{/api}" target="_blank"><button type="submit" class="btn btn-light border">API</button></a>
+        <p>To search by last name go to ../search/{last_name}</p>
     </div>
     <div class="container">
         <h3 style="font-family: 'Amaranth';" th:text="'Users: ' + ${totalUsers}"/>
