@@ -1,5 +1,6 @@
 package com.example.csvreader.controllers;
 
+import com.example.csvreader.models.User;
 import com.example.csvreader.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,16 +15,15 @@ public class IndexController {
 
     @RequestMapping(path = "/")
     public String index(Model model){
+        int x = 0;
+
+        for(User user : userRepository.findAll()){
+            x++;
+        }
+
+        model.addAttribute("totalUsers", x);
+        model.addAttribute("oldestUser", userRepository.findOldestUser());
         return "index";
-    }
-
-    @RequestMapping(path = "/add")
-    public String add(Model model){ return "add"; }
-
-    @RequestMapping(path = "/users")
-    public String users(Model model){
-        model.addAttribute("users", userRepository.findAll());
-        return "users";
     }
 
 }

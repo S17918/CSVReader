@@ -18,6 +18,28 @@
         <button type="submit" class="btn btn-light border">Search</button>
         <button type="submit" class="btn btn-light border">API</button>
     </div>
+    <div class="container">
+        <h3 style="font-family: 'Amaranth';" th:text="'Users: ' + ${totalUsers}"/>
+    </div>
+    <div class="container pt-4" th:if="${!oldestUser.isEmpty()}">
+        <h3 style="font-family: 'Amaranth';">Oldest user: </h3>
+        <table class="table table-striped">
+            <thead>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Birth Date</th>
+            <th>Phone Number</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${oldestUser.get(0).firstName}"></td>
+                <td th:text="${oldestUser.get(0).lastName}"></td>
+                <td th:text="${oldestUser.get(0).date}"></td>
+                <td th:text="${oldestUser.get(0).phoneNumber}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="copyright py-4 text-center text-dark">
         <div class="container"><small>Copyright © Piotr Wasilewski 2021</small></div>
     </div>

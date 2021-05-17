@@ -29,6 +29,9 @@ public class AddController {
     @Autowired
     private UserRepository userRepository;
 
+    @RequestMapping(path = "/add")
+    public String add(Model model){ return "add"; }
+
     @RequestMapping(path = "upload", method = RequestMethod.POST)
     public String upload(@RequestParam("file") MultipartFile file, Model model) throws IOException {
         if(file.isEmpty()){
@@ -50,6 +53,11 @@ public class AddController {
                 List<User> skippedList = new ArrayList<>();
                 List<User> finalList = new ArrayList<>();
 
+                int x = 0;
+                for(User user:userRepository.findAll()){
+                    x++;
+                }
+
                 for (User user : userList) {
                     if(user.getFirstName().length() != 0 && user.getLastName().length() != 0 && user.getBirthDate().length() != 0){
                         user.setDate(parseDateToSQL(user.getBirthDate()));
@@ -59,30 +67,47 @@ public class AddController {
                             }else {
                                 skippedList.add(user);
                             }
-                        }else {
-                            skippedList.add(user);
+                        }else{
+                            if(!user.getPhoneNumber().equals("")){
+                                user.setPhoneNumber("");
+                            }
+
+                            if(x == 0){
+                                tempList.add(user);
+                            }else{
+                                for(User user2 : userRepository.findAll()){
+                                    if(user2.getFirstName().equals(user.getFirstName()) && user2.getLastName().equals(user.getLastName()) && user2.getDate().equals(user.getDate())) {
+                                        skippedList.add(user);
+                                        break;
+                                    }else{
+                                        tempList.add(user);
+                                        break;
+                                    }
+                                }
+                            }
                         }
                     }else{
                         skippedList.add(user);
                     }
                 }
 
-                int x = 0;
-                for(User user:userRepository.findAll()){
-                    x++;
-                }
-
                 if(!tempList.isEmpty()){
                     for(User user : tempList) {
-                        System.out.println(x);
                         if(x == 0){
                             finalList.add(user);
                         }else {
                             boolean check = false;
                             for(User user2 : userRepository.findAll()){
                                 if(Objects.equals(user2.getPhoneNumber(), user.getPhoneNumber())){
-                                    check = true;
-                                    skippedList.add(user);
+                                    if(user2.getFirstName().equals(user.getFirstName()) && user2.getLastName().equals(user.getLastName()) && user2.getDate().equals(user.getDate())) {
+                                        skippedList.add(user);
+                                        check = true;
+                                    }else{
+                                        if(user.getPhoneNumber().length() == 9 || user2.getPhoneNumber().length() == 9){
+                                            skippedList.add(user);
+                                            check = true;
+                                        }
+                                    }
                                 }
                             }
                             if(!check){
